@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Calculator</title>
+    <style>
+        :root {
+            --background-color: #f0f0f3;
+            --calculator-background: #ffffff;
+            --display-background: #222;
+            --display-text-color: #00ff00;
+            --button-background: #e0e0e0;
+            --button-text-color: #000;
+            --button-hover: #d1d1d1;
+            --button-active: #c1c1c1;
+            --operation-background: #4caf50;
+            --operation-hover: #45a049;
+            --clear-background: #f44336;
+            --clear-hover: #e53935;
+            --equal-background: #2196f3;
+            --equal-hover: #1e88e5;
+            --heading-color: #222;
+        }
+
+        body.dark-mode {
+            --background-color: #121212;
+            --calculator-background: #1e1e1e;
+            --display-background: #333;
+            --display-text-color: #0f0;
+            --button-background: #333;
+            --button-text-color: #f0f0f3;
+            --button-hover: #444;
+            --button-active: #555;
+            --operation-background: #4caf50;
+            --operation-hover: #45a049;
+            --clear-background: #f44336;
+            --clear-hover: #e53935;
+            --equal-background: #2196f3;
+            --equal-hover: #1e88e5;
+            --heading-color: #f0f0f3;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-color);
+            transition: background-color 0.3s;
+        }
+
+        h1 {
+            color: var(--heading-color);
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            transition: color 0.3s;
+        }
+
+        .calculator {
+            width: 320px;
+            border-radius: 20px;
+            overflow: hidden;
+            background-color: var(--calculator-background);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .display {
+            height: 80px;
+            background-color: var(--display-background);
+            color: var(--display-text-color);
+            text-align: right;
+            padding: 20px;
+            font-size: 2.5rem;
+            border-radius: 10px;
+            box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            height: 60px;
+            border: none;
+            border-radius: 10px;
+            background-color: var(--button-background);
+            color: var(--button-text-color);
+            font-size: 1.5rem;
+            outline: none;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.3s, transform 0.1s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:hover {
+            background-color: var(--button-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn:active {
+            background-color: var(--button-active);
+            transform: translateY(2px);
+        }
+
+        .btn-operation {
+            background-color: var(--operation-background);
+            color: white;
+        }
+
+        .btn-operation:hover {
+            background-color: var(--operation-hover);
+        }
+
+        .btn-clear {
+            background-color: var(--clear-background);
+            color: white;
+        }
+
+        .btn-clear:hover {
+            background-color: var(--clear-hover);
+        }
+
+        .btn-equal {
+            background-color: var(--equal-background);
+            color: white;
+            grid-column: span 2;
+        }
+
+        .btn-equal:hover {
+            background-color: var(--equal-hover);
+        }
+
+        .btn-zero {
+            grid-column: span 2;
+        }
+
+        .toggle-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: var(--button-background);
+            color: var(--button-text-color);
+            border: none;
+            border-radius: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .toggle-btn:hover {
+            background-color: var(--button-hover);
+        }
+    </style>
+</head>
+<body>
+    <h1>Let's Calculate!</h1>
+    <div class="calculator">
+        <div class="display" id="display"></div>
+        <div class="buttons">
+            <button class="btn" onclick="appendNumber('7')">7</button>
+            <button class="btn" onclick="appendNumber('8')">8</button>
+            <button class="btn" onclick="appendNumber('9')">9</button>
+            <button class="btn btn-operation" onclick="chooseOperation('/')">/</button>
+            <button class="btn" onclick="appendNumber('4')">4</button>
+            <button class="btn" onclick="appendNumber('5')">5</button>
+            <button class="btn" onclick="appendNumber('6')">6</button>
+            <button class="btn btn-operation" onclick="chooseOperation('*')">*</button>
+            <button class="btn" onclick="appendNumber('1')">1</button>
+            <button class="btn" onclick="appendNumber('2')">2</button>
+            <button class="btn" onclick="appendNumber('3')">3</button>
+            <button class="btn btn-operation" onclick="chooseOperation('-')">-</button>
+            <button class="btn btn-zero" onclick="appendNumber('0')">0</button>
+            <button class="btn" onclick="appendNumber('.')">.</button>
+            <button class="btn btn-equal" onclick="calculate()">=</button>
+            <button class="btn btn-operation" onclick="chooseOperation('+')">+</button>
+            <button class="btn btn-clear" onclick="clearDisplay()">C</button>
+        </div>
+    </div>
+
+    <button class="toggle-btn" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+    
+    <script>
+        let display = document.getElementById('display');
+        let currentInput = '';
+        let currentOperation = null;
+        let previousInput = '';
+
+        function appendNumber(number) {
+            if (number === '.' && currentInput.includes('.')) return;
+            currentInput += number;
+            updateDisplay();
+        }
+
+        function chooseOperation(operation) {
+            if (currentInput === '') return;
+            if (previousInput !== '') {
+                calculate();
+            }
+            currentOperation = operation;
+            previousInput = currentInput;
+            currentInput = '';
+        }
+
+        function calculate() {
+            let result;
+            const prev = parseFloat(previousInput);
+            const current = parseFloat(currentInput);
+
+            if (isNaN(prev) || isNaN(current)) return;
+
+            switch (currentOperation) {
+                case '+':
+                    result = prev + current;
+                    break;
+                case '-':
+                    result = prev - current;
+                    break;
+                case '*':
+                    result = prev * current;
+                    break;
+                case '/':
+                    result = prev / current;
+                    break;
+                default:
+                    return;
+            }
+            currentInput = result.toString();
+            currentOperation = null;
+            previousInput = '';
+            updateDisplay();
+        }
+
+        function clearDisplay() {
+            currentInput = '';
+            previousInput = '';
+            currentOperation = null;
+            updateDisplay();
+        }
+
+        function updateDisplay() {
+            display.textContent = currentInput;
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
+</body>
+</html>
