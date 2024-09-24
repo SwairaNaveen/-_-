@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music Player</title>
+</head>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-image: url('1.jpg'); /* Replace with your image path */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+  .player {
+    background-color: rgba(255, 255, 255, 0.6); /* Semi-transparent */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 300px;
+    opacity: 0.9; /* Reduced opacity */
+  }
+
+  .song-info h3, .song-info p {
+    margin: 10px 0;
+  }
+
+  .controls button {
+    background-color: white;
+    color: #0d0d0e;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  .controls button:hover {
+    background-color: #0b0c0c;
+    color: white;
+  }
+
+  /* Disk logo styling */
+  .disk {
+    width: 100px;
+    height: 100px;
+    margin: 20px auto;
+    border-radius: 50%;
+    background-image: url('2.jpg'); /* Replace with your disk image */
+    background-size: cover;
+    background-position: center;
+    animation: spin 4s linear infinite; /* Spinning effect */
+  }
+
+  @keyframes spin {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Progress bar styling */
+  .progress {
+    width: 100%;
+    margin: 15px 0;
+  }
+</style>
+
+<body>
+
+  <div class="player">
+    <div class="disk"></div> <!-- Spinning disk logo -->
+
+    <div class="song-info">
+      <h3 id="song-title">Song Title</h3>
+      <p id="artist">Artist Name</p>
+    </div>
+
+    <audio id="audio-player" src="1.mp4"></audio>
+
+    <!-- Progress bar to show audio progress -->
+    <input type="range" id="progress-bar" class="progress" value="0" max="100">
+
+    <div class="controls">
+      <button id="prev-btn">Previous</button>
+      <button id="play-btn">Play</button>
+      <button id="next-btn">Next</button>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const songs = [
+        { title: "Dur na karin", artist: "Lofi music", src: "1.mp4" },
+        { title: "One love", artist: "Shubh", src: "2.mp4" },
+        { title: "sok di zma", artist: "Yarana", src: "3.mp4" }
+      ];
+
+      let currentSongIndex = 0;
+      const audioPlayer = document.getElementById("audio-player");
+      const playBtn = document.getElementById("play-btn");
+      const prevBtn = document.getElementById("prev-btn");
+      const nextBtn = document.getElementById("next-btn");
+      const songTitle = document.getElementById("song-title");
+      const artist = document.getElementById("artist");
+      const progressBar = document.getElementById("progress-bar");
+
+      function loadSong(song) {
+        songTitle.textContent = song.title;
+        artist.textContent = song.artist;
+        audioPlayer.src = song.src;
+      }
+
+      function playSong() {
+        audioPlayer.play();
+        playBtn.textContent = "Pause";
+      }
+
+      function pauseSong() {
+        audioPlayer.pause();
+        playBtn.textContent = "Play";
+      }
+
+      playBtn.addEventListener("click", () => {
+        if (audioPlayer.paused) {
+          playSong();
+        } else {
+          pauseSong();
+        }
+      });
+
+      prevBtn.addEventListener("click", () => {
+        currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+        loadSong(songs[currentSongIndex]);
+        playSong();
+      });
+
+      nextBtn.addEventListener("click", () => {
+        currentSongIndex = (currentSongIndex + 1) % songs.length;
+        loadSong(songs[currentSongIndex]);
+        playSong();
+      });
+
+      // Load the first song when the page loads
+      loadSong(songs[currentSongIndex]);
+
+      // Update the progress bar as the song plays
+      audioPlayer.addEventListener("timeupdate", () => {
+        const progressPercent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+        progressBar.value = progressPercent;
+      });
+
+      // Allow the user to change the position in the song
+      progressBar.addEventListener("input", (e) => {
+        const newTime = (e.target.value / 100) * audioPlayer.duration;
+        audioPlayer.currentTime = newTime;
+      });
+    });
+  </script>
+
+</body>
+</html>
