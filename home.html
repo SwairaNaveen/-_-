@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photophile</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        
+
+        p {
+            font-size: 100px;
+            font-family: 'Bodoni MT Black', serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px 0; /* Add padding to space it out from the images */
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            margin-top: 50px;
+            height: 100vh; /* Full viewport height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .text-background {
+            font-size: 150px;
+            font-family: 'Bodoni MT Black', serif;
+            color: transparent;
+            background-image: url('images/landscape/L8.jpg');
+            background-size: cover;
+            background-attachment: fixed; /* This is the key for parallax */
+            background-position: center;
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        .gallery {
+            display: flex; /* Use flexbox for horizontal layout */
+            flex-wrap: wrap; /* Allows wrapping to the next line if there is not enough space */
+            justify-content: center; /* Center align items horizontally */
+            margin-top: 20px; /* Adjusted to create space below the heading */
+            padding: 20px;
+        }
+
+        .gallery figure {
+            margin: 10px; /* Add space between figures */
+            flex: 0 0 auto; /* Prevent flex items from growing or shrinking */
+        }
+
+        .gallery img {
+            width: 300px; /* Fixed width */
+            height: 200px; /* Fixed height */
+            object-fit: cover; /* Ensures the image covers the dimensions without distortion */
+            border: 5px solid white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer; /* Change cursor to pointer on hover */
+        }
+
+        .gallery img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 16px rgba(255, 255, 255, 0.5);
+        }
+
+        .gallery figcaption {
+            text-align: center;
+            color: white;
+            font-size: 16px;
+            font-style: italic;
+            margin-top: 5px; /* Add space between image and caption */
+        }
+    </style>
+</head>
+<body>
+  
+
+    <div class="container">
+        <h1 class="text-background">PHOTOPHILE</h1>
+    </div>
+
+    <!-- Gallery Section -->
+    <p>OUR GALLERY</p>
+
+    <div class="gallery">
+        <figure>
+            <img src="images/landscape/L1.jpeg" alt="Landscape Photography" onclick="navigateToPage('Landscape.html')">
+            <figcaption>Landscape Photography</figcaption>
+        </figure>
+        <figure>
+            <img src="images/F1.jpeg" alt="Flower Photography" onclick="navigateToPage('flower.html')">
+            <figcaption>Flower Photography</figcaption>
+        </figure>
+        <figure>
+            <img src="images/N1.jpeg" alt="Night Photography" onclick="navigateToPage('night.html')">
+            <figcaption>Night Photography</figcaption>
+        </figure>
+        <figure>
+            <img src="images/street/2.jpg" alt="Night Photography" onclick="navigateToPage('Street.html')">
+            <figcaption>Street Photography</figcaption>
+        </figure>
+        <figure>
+            <img src="images/sky/1.jpg" alt="Sky Photography" onclick="navigateToPage('sky.html')">
+            <figcaption>Sky Photography</figcaption>
+        </figure>
+    </div>
+
+    <script>
+        function navigateToPage(pageUrl) {
+            window.location.href = pageUrl;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photophile</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        nav {
+            background-color: black; /* Ensure background is black to match the theme */
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            color: transparent;
+            text-decoration: none;
+            padding: 14px 20px;
+            display: inline-block;
+            font-size: 25px;
+            font-family: 'Bodoni MT Black', serif;
+            font-weight: bold;
+            background-image: url('images/landscape/L8.jpg'); /* Same image as the heading */
+            background-size: cover;
+            background-attachment: fixed; /* Parallax effect */
+            background-position: center;
+            -webkit-background-clip: text;
+            background-clip: text;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2); /* Light hover effect */
+            transform: scale(1.1);
+            border-radius: 5px;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            margin-top: 50px;
+            height: 100vh; /* Full viewport height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .text-background {
+            font-size: 150px;
+            font-family: 'Bodoni MT Black', serif;
+            color: transparent;
+            background-image: url('images/landscape/L9.jpg');
+            background-size: cover;
+            background-attachment: fixed; /* This is the key for parallax */
+            background-position: center;
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 50px;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .gallery figure {
+            margin: 0;
+            position: relative;
+        }
+
+        .gallery img {
+            width: 300px; /* Fixed width */
+            height: 200px; /* Fixed height */
+            object-fit: cover; /* Ensures the image covers the dimensions without distortion */
+            border: 5px solid white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer; /* Change cursor to pointer on hover */
+        }
+
+        .gallery img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 16px rgba(255, 255, 255, 0.5);
+        }
+
+        .gallery figcaption {
+            text-align: center;
+            margin-top: 10px;
+            color: white;
+            font-size: 16px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="landscape.html">Landscape</a>
+        <a href="flower.html">Flower</a>
+        <a href="night.html">Night</a>
+        <a href="Street.html">Street</a>
+        <a href="sky.html">Sky</a>
+    </nav>
+
+    <div class="container">
+        <h1 class="text-background">LANDSCAPE</h1>
+    </div>
+
+    <!-- Gallery Section -->
+    <div class="gallery">
+        <a href="images/landscape/L1.jpeg" data-lightbox="landscape" data-title="Aesthetic Photo 1"><img src="images/landscape/L1.jpeg" alt="Aesthetic Photo 1"></a>
+        <a href="images/landscape/L2.jpeg" data-lightbox="landscape" data-title="Aesthetic Photo 2"><img src="images/landscape/L2.jpeg" alt="Aesthetic Photo 2"></a>
+        <a href="images/landscape/L5.jpg" data-lightbox="landscape" data-title="Aesthetic Photo 3"><img src="images/landscape/L5.jpg" alt="Aesthetic Photo 3"></a>
+        <a href="images/landscape/L3.jpeg" data-lightbox="landscape" data-title="Aesthetic Photo 4"><img src="images/landscape/L3.jpeg" alt="Aesthetic Photo 4"></a>
+        <a href="images/landscape/L4.jpg" data-lightbox="landscape" data-title="Aesthetic Photo 5"><img src="images/landscape/L4.jpg" alt="Aesthetic Photo 5"></a>
+        <a href="images/landscape/L6.jpg" data-lightbox="landscape" data-title="Aesthetic Photo 6"><img src="images/landscape/L6.jpg" alt="Aesthetic Photo 6"></a>
+        <a href="images/landscape/L7.jpg" data-lightbox="landscape" data-title="Aesthetic Photo 7"><img src="images/landscape/L7.jpg" alt="Aesthetic Photo 7"></a>
+        <a href="images/landscape/L8.jpg" data-lightbox="landscape" data-title="Aesthetic Photo 8"><img src="images/landscape/L8.jpg" alt="Aesthetic Photo 8"></a>
+        <a href="images/landscape/L9.jpg" data-lightbox="landscape" data-title="Aesthetic Photo 9"><img src="images/landscape/L9.jpg" alt="Aesthetic Photo 9"></a>
+        <a href="images/landscape/L10.jpg" data-lightbox="landscape" data-title="Aesthetic Photo 10"><img src="images/landscape/L10.jpg" alt="Aesthetic Photo 10"></a>
+        <a href="images/landscape/L11.jpg" data-lightbox="landscape" data-title="Aesthetic Photo 11"><img src="images/landscape/L11.jpg" alt="Aesthetic Photo 11"></a>
+        <a href="images/landscape/L12.jpg" data-lightbox="landscape" data-title="Aesthetic Photo 12"><img src="images/landscape/L12.jpg" alt="Aesthetic Photo 12"></a>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
+</body>
+</html>
